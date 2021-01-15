@@ -16,7 +16,10 @@ export interface PositionProps {
 export const makePositionProps = propsFactory({
   bottom: [Boolean, String],
   left: [Boolean, String],
-  position: String,
+  position: {
+    type: String,
+    validator: (v: string) => ['static', 'relative', 'fixed', 'absolute', 'sticky'].includes(v),
+  },
   right: [Boolean, String],
   top: [Boolean, String],
 })
