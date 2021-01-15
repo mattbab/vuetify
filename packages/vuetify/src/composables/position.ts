@@ -25,7 +25,13 @@ export function usePosition (props: PositionProps) {
   const targets = ['top', 'right', 'bottom', 'left'] as const
 
   const positionClasses = computed(() => {
-    return props.position ? { [`position-${props.position}`]: true } : {}
+    const classes: string[] = []
+
+    if (!props.position) return classes
+
+    classes.push(`position-${props.position}`)
+
+    return classes
   })
 
   const positionStyles = computed(() => {

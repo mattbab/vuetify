@@ -6,11 +6,11 @@ import type { PositionProps } from '..'
 
 describe('position.ts', () => {
   it.each([
-    [{ position: undefined }, {}],
-    [{ position: false }, {}],
-    [{ position: null }, {}],
-    [{ position: 'absolute' }, { 'position-absolute': true }],
-    [{ position: 'fixed' }, { 'position-fixed': true }],
+    [{ position: undefined }, []],
+    [{ position: false }, []],
+    [{ position: null }, []],
+    [{ position: 'absolute' }, ['position-absolute']],
+    [{ position: 'fixed' }, ['position-fixed']],
   ])('should have proper classes', (props, expected) => {
     const { positionClasses } = usePosition(props as PositionProps)
 
