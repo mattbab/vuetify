@@ -1,4 +1,5 @@
 // Utilities
+import type { PropType } from 'vue'
 import { computed } from 'vue'
 import { convertToUnit } from '@/util/helpers'
 import propsFactory from '@/util/propsFactory'
@@ -7,18 +8,20 @@ import propsFactory from '@/util/propsFactory'
 export interface PositionProps {
   bottom?: boolean | string
   left?: boolean | string
-  position?: Partial<'static' | 'relative' | 'fixed' | 'absolute' | 'sticky'>
+  position?: 'static' | 'relative' | 'fixed' | 'absolute' | 'sticky'
   right?: boolean | string
   top?: boolean | string
 }
+
+const positionValues = ['static', 'relative', 'fixed', 'absolute', 'sticky'] as const
 
 // Composables
 export const makePositionProps = propsFactory({
   bottom: [Boolean, String],
   left: [Boolean, String],
   position: {
-    type: String,
-    validator: (v: string) => ['static', 'relative', 'fixed', 'absolute', 'sticky'].includes(v),
+    type: String as PropType<Partial<typeof positionValues[number]>>,
+    validator: (v: any) => positionValues.includes(v),
   },
   right: [Boolean, String],
   top: [Boolean, String],
