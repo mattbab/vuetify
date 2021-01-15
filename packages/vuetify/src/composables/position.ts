@@ -7,7 +7,7 @@ import propsFactory from '@/util/propsFactory'
 export interface PositionProps {
   bottom?: boolean | string
   left?: boolean | string
-  position?: string
+  position?: 'static' | 'relative' | 'fixed' | 'absolute' | 'sticky'
   right?: boolean | string
   top?: boolean | string
 }
