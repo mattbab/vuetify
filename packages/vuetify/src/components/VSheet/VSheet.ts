@@ -37,7 +37,7 @@ export default defineComponent({
     const { themeClasses } = useTheme()
     const { borderRadiusClasses } = useBorderRadius(props)
     const { elevationClasses } = useElevation(props)
-    const { outlinedClasses } = useOutlined(props, 'v-sheet')
+    const { outlinedClasses } = useOutlined(props)
     const { positionClasses, positionStyles } = usePosition(props)
     const { dimensionStyles } = useDimension(props)
 
