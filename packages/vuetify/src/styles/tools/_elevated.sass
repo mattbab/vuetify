@@ -1,4 +1,0 @@
-@mixin elevation($query, $important: false)
-  $elevation: map-get($query, 'elevation')
-
-  box-shadow: map-get($shadow-key-umbra, $elevation), map-get($shadow-key-penumbra, $elevation), map-get($shadow-key-ambient, $elevation) if($important, !important, null)
