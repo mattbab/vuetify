@@ -5,39 +5,35 @@ import { convertToUnit } from '@/util/helpers'
 import propsFactory from '@/util/propsFactory'
 
 // Types
-export interface PositionProps {
-  bottom?: boolean | string
-  left?: boolean | string
-  position?: 'static' | 'relative' | 'fixed' | 'absolute' | 'sticky'
-  right?: boolean | string
-  top?: boolean | string
-}
-
 const positionValues = ['static', 'relative', 'fixed', 'absolute', 'sticky'] as const
+
+type Position = typeof positionValues[number]
+
+export interface PositionProps {
+  bottom?: boolean | number | string
+  left?: boolean | number | string
+  position?: Position
+  right?: boolean | number | string
+  top?: boolean | number | string
+}
 
 // Composables
 export const makePositionProps = propsFactory({
-  bottom: [Boolean, String],
-  left: [Boolean, String],
+  bottom: [Boolean, Number, String],
+  left: [Boolean, Number, String],
   position: {
-    type: String as PropType<Partial<typeof positionValues[number]>>,
-    validator: (v: any) => positionValues.includes(v),
+    type: String as PropType<Position>,
+    validator: /* istanbul ignore next */ (v: any) => positionValues.includes(v),
   },
-  right: [Boolean, String],
-  top: [Boolean, String],
+  right: [Boolean, Number, String],
+  top: [Boolean, Number, String],
 })
 
 export function usePosition (props: PositionProps) {
   const targets = ['top', 'right', 'bottom', 'left'] as const
 
   const positionClasses = computed(() => {
-    const classes: string[] = []
-
-    if (!props.position) return classes
-
-    classes.push(`position-${props.position}`)
-
-    return classes
+    return props.position ? `position-${props.position}` : undefined
   })
 
   const positionStyles = computed(() => {
